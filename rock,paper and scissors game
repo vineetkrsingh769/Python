@@ -1,0 +1,52 @@
+# Python
+from random import randint 
+
+def get_result(user, computer, user_score, cpu_score): 
+    if user == 'rock':
+        if computer == 'paper': 
+            cpu_score += 1
+            return 'Computer Wins!', user_score , cpu_score
+        elif computer == 'rock': 
+            return 'Tie!', user_score , cpu_score
+        else: 
+            user_score += 1
+            return 'User wins!', user_score , cpu_score
+
+    elif user == 'paper': 
+        if computer == 'paper': 
+            return 'Tie!', user_score , cpu_score 
+        elif computer == 'rock': 
+            user_score += 1
+            return 'User wins!', user_score , cpu_score
+        else: 
+            cpu_score += 1
+            return 'Computer wins!', user_score , cpu_score 
+    
+    elif user == 'scissors': 
+        if computer == 'paper': 
+            user_score += 1
+            return 'User Wins!', user_score , cpu_score 
+        elif computer == 'rock': 
+            cpu_score += 1
+            return 'Computer wins!', user_score , cpu_score
+        else: 
+            return 'Tie!', user_score , cpu_score
+
+CHOICES = ('rock','paper','scissors') 
+    
+user_score = 0 
+cpu_score = 0
+while(True):
+    user_input = input('Enter rock/paper/scissors: ').lower().strip() 
+    if user_input not in CHOICES: 
+        print('Select valid choice') 
+    else: 
+        n = randint(0,len(CHOICES)-1) 
+        result, user_score, cpu_score = get_result(user_input, CHOICES[n], user_score, cpu_score) 
+        print(result) 
+        print('User score: ', user_score) 
+        print('CPU Score: ', cpu_score)  
+        exit = input('Play one more?(y/n): ').lower()
+        print('-----') 
+        if exit != 'y': 
+            break 
